@@ -1,0 +1,58 @@
+class NegociacaoController {
+
+    constructor(){
+        let $ = document.querySelector.bind(document); //bind mantem a associacao do queryselector com a var
+
+        //document.querySelector seleciona no dom o id em questao
+        //queryselector aceita seletor css
+        this._inputData = $('#data')
+        this._inputQuantidade = $('#quantidade')
+        this._inputValor = $('#valor')
+    }
+
+    adiciona(event){
+        event.preventDefault(); //inibe o form de reload
+
+        // let data = new Date(this._inputData.value.replace(/-/g, ',')) //regex - troca os '-' de toda a string (global) por ','
+
+        //...spread operator, cada item do array eh um param do const
+        // let data = new Date(...
+        //     this._inputData.value
+        //     .split('-')
+        //     .map(function(item, indice){
+        //         if(indice == 1){
+        //             return item - 1;
+        //         }
+        //         return item;
+        //     })
+            
+        // ); 
+
+
+        let data = new Date(...
+            this._inputData.value
+            .split('-')
+            .map((item, indice) => { //se tiver uma funcao soh na arrow function, pode remover o {} tb pode tirar o return
+                if(indice == 1){
+                    return item - 1;
+                }
+                return item;
+            })
+            
+        ); 
+
+        let negocicao = new Negociacao(
+            data,
+            this._inputQuantidade,
+            this._inputValor
+        );
+
+
+        // let numeros = [10,20,30];
+        // //map - cria um novo array somando + 10 a cada item
+        // let novosNumeros = numeros.map(function(item) {return item + 10});
+        
+        
+        // console.log(this._inputData.value);
+    }
+}
