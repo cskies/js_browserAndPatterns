@@ -1,12 +1,10 @@
 class Negociacao {
 
     constructor(data, quantidade, valor){
-        this._data = new Date(data.getTime()); //prog defensiva - pega referencia da data pra evitar ser alterada
+        this._data = new Date(data.getTime()); 
         this._quantidade = quantidade;
         this._valor = valor;
         
-        //congela geral pra ñ ser alterado
-        // nao congela objeto.. data por exemplo - shallow freeze  
         Object.freeze(this); 
         
     }
