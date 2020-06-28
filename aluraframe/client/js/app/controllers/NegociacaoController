@@ -11,53 +11,19 @@ class NegociacaoController {
     }
 
     adiciona(event){
-        event.preventDefault(); //inibe o form de reload
+        event.preventDefault(); 
 
-        // let data = new Date(this._inputData.value.replace(/-/g, ',')) //regex - troca os '-' de toda a string (global) por ','
-
-        //...spread operator, cada item do array eh um param do const
-        // let data = new Date(...
-        //     this._inputData.value
-        //     .split('-')
-        //     .map(function(item, indice){
-        //         if(indice == 1){
-        //             return item - 1;
-        //         }
-        //         return item;
-        //     })
-            
-        // ); 
-
-
-        let data = new Date(...
-            this._inputData.value
-            .split('-')
-            .map((item, indice) => { //se tiver uma funcao soh na arrow function, pode remover o {} tb pode tirar o return
-                if(indice == 1){
-                    return item - 1;
-                }
-                return item;
-            })
-            
-        ); 
+        let helper = new DateHelper()
+        
 
         let negocicao = new Negociacao(
-            data,
+            helper.textoParaData(this._inputData.value),
             this._inputQuantidade,
             this._inputValor
         );
-
-
-        // let numeros = [10,20,30];
-        // //map - cria um novo array somando + 10 a cada item
-        // let novosNumeros = numeros.map(function(item) {return item + 10});
         
-        
-        // console.log(this._inputData.value);
+        console.log(negocicao);
+        console.log(helper.dataParaTexto(negocicao.data));
+
     }
-
-    // if terario e funcional com arrow function
-    // let numeros = [3,2,11,20,8,7];
-    // let novosNumeros = numeros.map(item =>  item % 2 ? item * 2 : item);
-    // console.log(novosNumeros);
 }
